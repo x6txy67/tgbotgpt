@@ -1,0 +1,503 @@
+3M	mmm	1.0
+A. O. Smith	aos	-1.0
+Abbott	abt	-2.0
+AbbVie	abbv	-1.0
+Accenture	acn	4.0
+Activision Blizzard	atvi	2.0
+ADM	adm	-3.0
+Adobe Inc.	adbe	6.0
+ADP	adp	0.0
+Advance Auto Parts	aap	-3.0
+AES Corporation	aes	-2.0
+Aflac	afl	3.0
+Agilent Technologies	a	0.0
+Air Products and Chemicals	apd	-1.0
+Akamai	akam	5.0
+Alaska Air Group	alk	-2.0
+Albemarle Corporation	alb	2.0
+Alexandria Real Estate Equities	are	-2.0
+Align Technology	algn	3.0
+Allegion	alle	0.0
+Alliant Energy	lnt	2.0
+Allstate	all	0.0
+Alphabet Inc. (Class A)	googl	3.0
+Alphabet Inc. (Class C)	goog	4.0
+Altria	mo	2.0
+Amazon	amzn	1.0
+Amcor	amcr	2.0
+AMD	amd	3.0
+Ameren	aee	-1.0
+American Airlines Group	aal	-2.0
+American Electric Power	aep	0.0
+American Express	axp	-2.0
+American International Group	aig	-2.0
+American Tower	amt	-4.0
+American Water Works	awk	1.0
+Ameriprise Financial	amp	1.0
+AmerisourceBergen	abc	1.0
+Ametek	ame	3.0
+Amgen	amgn	1.0
+Amphenol	aph	4.0
+Analog Devices	adi	-2.0
+Ansys	anss	3.0
+Aon	aon	2.0
+APA Corporation	apa	3.0
+Apple Inc.	aapl	1.0
+Applied Materials	amat	6.0
+Aptiv	aptv	-1.0
+Arch Capital Group	acgl	3.0
+Arista Networks	anet	6.0
+Arthur J. Gallagher & Co.	ajg	-1.0
+Assurant	aiz	-1.0
+AT&T	t	-4.0
+Atmos Energy	ato	-1.0
+Autodesk	adsk	0.0
+AutoZone	azo	-2.0
+AvalonBay Communities	avb	-1.0
+Avery Dennison	avy	-2.0
+Axon Enterprise	axon	0.0
+Baker Hughes	bkr	0.0
+Ball Corporation	ball	-4.0
+Bank of America	bac	-2.0
+Bath & Body Works, Inc.	bbwi	1.0
+Baxter International	bax	-6.0
+Becton Dickinson	bdx	1.0
+Berkley	wrb	0.0
+Berkshire Hathaway	brk.b	
+Best Buy	bby	1.0
+Bio-Rad	bio	-5.0
+Bio-Techne	tech	-1.0
+Biogen	biib	1.0
+BlackRock	blk	-1.0
+BNY Mellon	bk	-2.0
+Boeing	ba	3.0
+Booking Holdings	bkng	3.0
+BorgWarner	bwa	0.0
+Boston Properties	bxp	-3.0
+Boston Scientific	bsx	0.0
+Bristol Myers Squibb	bmy	3.0
+Broadcom Inc.	avgo	6.0
+Broadridge Financial Solutions	br	6.0
+Brown & Brown	bro	3.0
+Brown–Forman	bf.b	
+Bunge Limited	bg	4.0
+C.H. Robinson	chrw	-2.0
+Cadence Design Systems	cdns	1.0
+Caesars Entertainment	czr	-3.0
+Camden Property Trust	cpt	-2.0
+Campbell Soup Company	cpb	3.0
+Capital One	cof	-2.0
+Cardinal Health	cah	-3.0
+CarMax	kmx	-4.0
+Carnival	ccl	0.0
+Carrier Global	carr	6.0
+Catalent	ctlt	-2.0
+Caterpillar Inc.	cat	2.0
+Cboe Global Markets	cboe	3.0
+CBRE Group	cbre	-4.0
+CDW	cdw	-1.0
+Celanese	ce	0.0
+Centene Corporation	cnc	0.0
+CenterPoint Energy	cnp	-3.0
+Ceridian	cday	-1.0
+CF Industries	cf	1.0
+Charles River Laboratories	crl	-1.0
+Charles Schwab Corporation	schw	-3.0
+Charter Communications	chtr	1.0
+Chevron Corporation	cvx	3.0
+Chipotle Mexican Grill	cmg	3.0
+Chubb Limited	cb	1.0
+Church & Dwight	chd	-2.0
+Cigna	ci	0.0
+Cincinnati Financial	cinf	-2.0
+Cintas	ctas	1.0
+Cisco	csco	4.0
+Citigroup	c	-1.0
+Citizens Financial Group	cfg	-3.0
+Clorox	clx	-4.0
+CME Group	cme	-1.0
+CMS Energy	cms	-3.0
+Coca-Cola Company (The)	ko	1.0
+Cognizant	ctsh	4.0
+Colgate-Palmolive	cl	-2.0
+Comcast	cmcsa	4.0
+Comerica	cma	-2.0
+Conagra Brands	cag	-1.0
+ConocoPhillips	cop	4.0
+Consolidated Edison	ed	0.0
+Constellation Brands	stz	-1.0
+Constellation Energy	ceg	1.0
+CooperCompanies	coo	3.0
+Copart	cprt	4.0
+Corning Inc.	glw	-3.0
+Corteva	ctva	-1.0
+CoStar Group	csgp	0.0
+Costco	cost	1.0
+Coterra	ctra	4.0
+Crown Castle	cci	0.0
+CSX	csx	-1.0
+Cummins	cmi	-2.0
+CVS Health	cvs	-5.0
+D.R. Horton	dhi	7.0
+Danaher Corporation	dhr	2.0
+Darden Restaurants	dri	1.0
+DaVita Inc.	dva	5.0
+John Deere	de	-1.0
+Delta Air Lines	dal	0.0
+Dentsply Sirona	xray	-3.0
+Devon Energy	dvn	4.0
+Dexcom	dxcm	2.0
+Diamondback Energy	fang	5.0
+Digital Realty	dlr	3.0
+Discover Financial	dfs	0.0
+Disney	dis	-2.0
+Dollar General	dg	2.0
+Dollar Tree	dltr	-1.0
+Dominion Energy	d	-2.0
+Domino's	dpz	2.0
+Dover Corporation	dov	-1.0
+Dow Inc.	dow	-2.0
+DTE Energy	dte	-3.0
+Duke Energy	duk	0.0
+DuPont	dd	0.0
+DXC Technology	dxc	-5.0
+Eastman Chemical Company	emn	-2.0
+Eaton Corporation	etn	5.0
+eBay	ebay	2.0
+Ecolab	ecl	0.0
+Edison International	eix	-2.0
+Edwards Lifesciences	ew	-2.0
+Electronic Arts	ea	-1.0
+Elevance Health	elv	-1.0
+Eli Lilly and Company	lly	3.0
+Emerson Electric	emr	4.0
+Enphase	enph	1.0
+Entergy	etr	-1.0
+EOG Resources	eog	2.0
+EPAM Systems	epam	1.0
+EQT	eqt	3.0
+Equifax	efx	-3.0
+Equinix	eqix	1.0
+Equity Residential	eqr	-1.0
+Essex Property Trust	ess	-2.0
+Estée Lauder Companies (The)	el	-3.0
+Etsy	etsy	-6.0
+Everest Re	eg	1.0
+Evergy	evrg	0.0
+Eversource	es	0.0
+Exelon	exc	-4.0
+Expedia Group	expe	1.0
+Expeditors International	expd	1.0
+Extra Space Storage	exr	3.0
+ExxonMobil	xom	2.0
+F5, Inc.	ffiv	1.0
+FactSet	fds	0.0
+Fair Isaac	fico	3.0
+Fastenal	fast	4.0
+Federal Realty	frt	1.0
+FedEx	fdx	3.0
+Fifth Third Bank	fitb	-3.0
+First Solar	fslr	0.0
+FirstEnergy	fe	-2.0
+FIS	fis	-2.0
+Fiserv	fi	-2.0
+Fleetcor	flt	6.0
+FMC Corporation	fmc	5.0
+Ford Motor Company	f	-3.0
+Fortinet	ftnt	-2.0
+Fortive	ftv	2.0
+Fox Corporation (Class A)	foxa	2.0
+Fox Corporation (Class B)	fox	
+Franklin Templeton	ben	0.0
+Freeport-McMoRan	fcx	1.0
+Garmin	grmn	-1.0
+Gartner	it	0.0
+GE HealthCare	gehc	1.0
+Gen Digital	gen	-1.0
+Generac	gnrc	-4.0
+General Dynamics	gd	-3.0
+General Electric	ge	3.0
+General Mills	gis	4.0
+General Motors	gm	0.0
+Genuine Parts Company	gpc	-3.0
+Gilead Sciences	gild	6.0
+Globe Life	gl	0.0
+Global Payments	gpn	1.0
+Goldman Sachs	gs	-1.0
+Halliburton	hal	0.0
+Hartford (The)	hig	0.0
+Hasbro	has	-5.0
+HCA Healthcare	hca	0.0
+Healthpeak	peak	-7.0
+Henry Schein	hsic	-2.0
+Hershey's	hsy	1.0
+Hess Corporation	hes	2.0
+Hewlett Packard Enterprise	hpe	0.0
+Hilton Worldwide	hlt	-1.0
+Hologic	holx	-1.0
+Home Depot (The)	hd	3.0
+Honeywell	hon	-2.0
+Hormel Foods	hrl	1.0
+Host Hotels & Resorts	hst	-1.0
+Howmet Aerospace	hwm	0.0
+HP Inc.	hpq	-1.0
+Humana	hum	-1.0
+Huntington Bancshares	hban	-2.0
+Huntington Ingalls Industries	hii	0.0
+IBM	ibm	0.0
+IDEX Corporation	iex	0.0
+Idexx Laboratories	idxx	0.0
+Illinois Tool Works	itw	1.0
+Illumina	ilmn	-2.0
+Incyte	incy	1.0
+Ingersoll Rand	ir	3.0
+Insulet	podd	-2.0
+Intel	intc	0.0
+Intercontinental Exchange	ice	-1.0
+International Flavors & Fragrances	iff	-4.0
+International Paper	ip	-1.0
+Interpublic Group of Companies (The)	ipg	0.0
+Intuit	intu	4.0
+Intuitive Surgical	isrg	3.0
+Invesco	ivz	0.0
+Invitation Homes	invh	
+IQVIA	iqv	
+Iron Mountain	irm	
+J.B. Hunt	jbht	
+Jack Henry & Associates	jkhy	
+Jacobs Solutions	j	
+Johnson & Johnson	jnj	
+Johnson Controls	jci	
+JPMorgan Chase	jpm	
+Juniper Networks	jnpr	
+Kellogg's	k	
+Keurig Dr Pepper	kdp	
+KeyCorp	key	
+Keysight	keys	
+Kimberly-Clark	kmb	
+Kimco Realty	kim	
+Kinder Morgan	kmi	
+KLA Corporation	klac	
+Kraft Heinz	khc	
+Kroger	kr	
+L3Harris	lhx	
+LabCorp	lh	
+Lam Research	lrcx	
+Lamb Weston	lw	-2.0
+Las Vegas Sands	lvs	0.0
+Leidos	ldos	-1.0
+Lennar	len	6.0
+Lincoln Financial	lnc	-4.0
+Linde plc	lin	2.0
+Live Nation Entertainment	lyv	0.0
+LKQ Corporation	lkq	-2.0
+Lockheed Martin	lmt	-4.0
+Loews Corporation	l	-1.0
+Lowe's	low	-2.0
+LyondellBasell	lyb	1.0
+M&T Bank	mtb	-6.0
+Marathon Oil	mro	2.0
+Marathon Petroleum	mpc	7.0
+MarketAxess	mktx	2.0
+Marriott International	mar	3.0
+Marsh McLennan	mmc	4.0
+Martin Marietta Materials	mlm	5.0
+Masco	mas	0.0
+Mastercard	ma	1.0
+Match Group	mtch	-1.0
+McCormick & Company	mkc	-1.0
+McDonald's	mcd	0.0
+McKesson	mck	1.0
+Medtronic	mdt	-3.0
+Merck & Co.	mrk	-1.0
+Meta Platforms	meta	3.0
+MetLife	met	-3.0
+Mettler Toledo	mtd	-2.0
+MGM Resorts	mgm	-4.0
+Microchip Technology	mchp	1.0
+Micron Technology	mu	-1.0
+Microsoft	msft	3.0
+Mid-America Apartment Communities	maa	-3.0
+Moderna	mrna	0.0
+Mohawk Industries	mhk	-1.0
+Molina Healthcare	moh	-2.0
+Molson Coors Beverage Company	tap	0.0
+Mondelez International	mdlz	6.0
+Monolithic Power Systems	mpwr	0.0
+Monster Beverage	mnst	2.0
+Moody's Corporation	mco	3.0
+Morgan Stanley	ms	-2.0
+Mosaic Company (The)	mos	-1.0
+Motorola Solutions	msi	1.0
+MSCI	msci	0.0
+Nasdaq, Inc.	ndaq	-1.0
+NetApp	ntap	-1.0
+Netflix	nflx	3.0
+Newell Brands	nwl	-5.0
+Newmont	nem	-1.0
+News Corp (Class A)	nwsa	1.0
+News Corp (Class B)	nws	
+NextEra Energy	nee	0.0
+Nike, Inc.	nke	-1.0
+NiSource	ni	-2.0
+Nordson Corporation	ndsn	2.0
+Norfolk Southern Railway	nsc	-2.0
+Northern Trust	ntrs	-5.0
+Northrop Grumman	noc	2.0
+Norwegian Cruise Line Holdings	nclh	-2.0
+NRG Energy	nrg	0.0
+Nucor	nue	1.0
+Nvidia	nvda	6.0
+NVR, Inc.	nvr	5.0
+NXP Semiconductors	nxpi	5.0
+O'Reilly Auto Parts	orly	1.0
+Occidental Petroleum	oxy	-1.0
+Old Dominion	odfl	4.0
+Omnicom Group	omc	1.0
+ON Semiconductor	on	6.0
+ONEOK	oke	2.0
+Oracle Corporation	orcl	1.0
+Organon & Co.	ogn	
+Otis Worldwide	otis	
+Paccar	pcar	
+Packaging Corporation of America	pkg	
+Palo Alto Networks	panw	
+Paramount Global	para	
+Parker Hannifin	ph	
+Paychex	payx	
+Paycom	payc	
+PayPal	pypl	
+Pentair	pnr	
+PepsiCo	pep	
+Pfizer	pfe	
+PG&E Corporation	pcg	
+Philip Morris International	pm	
+Phillips 66	psx	
+Pinnacle West	pnw	
+Pioneer Natural Resources	pxd	
+PNC Financial Services	pnc	
+Pool Corporation	pool	
+PPG Industries	ppg	
+PPL Corporation	ppl	
+Principal Financial Group	pfg	
+Procter & Gamble	pg	2.0
+Progressive Corporation	pgr	-3.0
+Prologis	pld	-5.0
+Prudential Financial	pru	-2.0
+Public Service Enterprise Group	peg	-2.0
+PTC	ptc	4.0
+Public Storage	psa	-1.0
+PulteGroup	phm	6.0
+Qorvo	qrvo	-4.0
+Quanta Services	pwr	2.0
+Qualcomm	qcom	1.0
+Quest Diagnostics	dgx	0.0
+Ralph Lauren Corporation	rl	2.0
+Raymond James	rjf	-3.0
+RTX Corporation	rtx	-3.0
+Realty Income	o	-1.0
+Regency Centers	reg	-2.0
+Regeneron	regn	2.0
+Regions Financial Corporation	rf	-2.0
+Republic Services	rsg	1.0
+ResMed	rmd	1.0
+Revvity	rvty	-2.0
+Robert Half	rhi	-1.0
+Rockwell Automation	rok	0.0
+Rollins, Inc.	rol	1.0
+Roper Technologies	rop	1.0
+Ross Stores	rost	5.0
+Royal Caribbean Group	rcl	1.0
+S&P Global	spgi	-3.0
+Salesforce	crm	2.0
+SBA Communications	sbac	0.0
+Schlumberger	slb	2.0
+Seagate Technology	stx	-5.0
+Sealed Air	see	-1.0
+Sempra Energy	sre	0.0
+ServiceNow	now	2.0
+Sherwin-Williams	shw	3.0
+Simon Property Group	spg	-3.0
+Skyworks Solutions	swks	1.0
+J.M. Smucker Company (The)	sjm	0.0
+Snap-on	sna	2.0
+SolarEdge	sedg	-1.0
+Southern Company	so	-1.0
+Southwest Airlines	luv	-4.0
+Stanley Black & Decker	swk	-5.0
+Starbucks	sbux	3.0
+State Street Corporation	stt	-3.0
+Steel Dynamics	stld	1.0
+Steris	ste	-2.0
+Stryker Corporation	syk	2.0
+Synchrony Financial	syf	-2.0
+Synopsys	snps	3.0
+Sysco	syy	-3.0
+T-Mobile US	tmus	-1.0
+T. Rowe Price	trow	-1.0
+Take-Two Interactive	ttwo	-1.0
+Tapestry, Inc.	tpr	3.0
+Targa Resources	trgp	3.0
+Target Corporation	tgt	0.0
+TE Connectivity	tel	-1.0
+Teledyne Technologies	tdy	-2.0
+Teleflex	tfx	-3.0
+Teradyne	ter	4.0
+Tesla, Inc.	tsla	4.0
+Texas Instruments	txn	0.0
+Textron	txt	0.0
+Thermo Fisher Scientific	tmo	-3.0
+TJX Companies	tjx	-1.0
+Tractor Supply	tsco	1.0
+Trane Technologies	tt	2.0
+TransDigm Group	tdg	2.0
+Travelers Companies (The)	trv	-2.0
+Trimble Inc.	trmb	-1.0
+Truist	tfc	-4.0
+Tyler Technologies	tyl	1.0
+Tyson Foods	tsn	-3.0
+U.S. Bank	usb	
+UDR, Inc.	udr	
+Ulta Beauty	ulta	
+Union Pacific Corporation	unp	
+United Airlines Holdings	ual	
+United Parcel Service	ups	
+United Rentals	uri	
+UnitedHealth Group	unh	
+Universal Health Services	uhs	
+Valero Energy	vlo	
+Ventas	vtr	
+Verisign	vrsn	
+Verisk	vrsk	
+Verizon	vz	
+Vertex Pharmaceuticals	vrtx	
+VF Corporation	vfc	
+Viatris	vtrs	
+Vici Properties	vici	
+Visa Inc.	v	
+Vulcan Materials Company	vmc	
+Wabtec	wab	
+Walgreens Boots Alliance	wba	
+Walmart	wmt	
+Warner Bros. Discovery	wbd	-1.0
+Waste Management	wm	0.0
+Waters Corporation	wat	0.0
+WEC Energy Group	wec	3.0
+Wells Fargo	wfc	-4.0
+Welltower	well	1.0
+West Pharmaceutical Services	wst	4.0
+Western Digital	wdc	-4.0
+WestRock	wrk	-3.0
+Weyerhaeuser	wy	-1.0
+Whirlpool Corporation	whr	-5.0
+Williams Companies	wmb	-2.0
+Willis Towers Watson	wtw	-1.0
+W. W. Grainger	gww	2.0
+Wynn Resorts	wynn	3.0
+Xcel Energy	xel	0.0
+Xylem Inc.	xyl	-2.0
+Yum! Brands	yum	-2.0
+Zebra Technologies	zbra	-1.0
+Zimmer Biomet	zbh	-2.0
+Zions Bancorporation	zion	-4.0
+Zoetis	zts	3.0
