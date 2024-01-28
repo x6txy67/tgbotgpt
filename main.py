@@ -93,6 +93,8 @@ async def handle_start(message: types.Message):
         await bot.send_message(
             message.from_user.id, question_msg, reply_markup=qs.first_keyboard
         )
+    else:
+        bot(chat_id=message.from_user.id, text="Вы уже зарегистрированы", reply_markup=keyboard)
         
 
 @dp.callback_query_handler(lambda c: c.data.startswith('answer_'))
@@ -102,7 +104,7 @@ async def process_answer(callback_query: CallbackQuery):
     CHECK_STATES[callback_query.from_user.id] += int (1)
     print(PICK_STATES[callback_query.from_user.id])
     skip_count = CHECK_STATES[callback_query.from_user.id]
-    keyboard = InlineKeyboardMarkup()
+    keyboard1 = InlineKeyboardMarkup()
     key1 = ''
     if CHECK_STATES[callback_query.from_user.id] != 8:
         for key, value in qs.questions.items():
@@ -117,9 +119,9 @@ async def process_answer(callback_query: CallbackQuery):
                     if 'answer_' in item:
                         continue
                     final += f'{item} '
-                keyboard.add(InlineKeyboardButton(final, callback_data=item_after_count[0]))
+                keyboard1.add(InlineKeyboardButton(final, callback_data=item_after_count[0]))
             break
-        await bot.edit_message_text(key1, chat_id=callback_query.from_user.id, message_id=callback_query.message.message_id, reply_markup=keyboard)
+        await bot.edit_message_text(key1, chat_id=callback_query.from_user.id, message_id=callback_query.message.message_id, reply_markup=keyboard1)
     else:
         await bot.edit_message_text(f"Вы закончили тест. Ваш результат: {PICK_STATES[callback_query.from_user.id]}", chat_id=callback_query.from_user.id, message_id=callback_query.message.message_id)
         congr = "Теперь вы можете пользоваться ботом"
