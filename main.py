@@ -1,24 +1,8 @@
-import asyncio
-import os
-
-from aiogram import Bot, Dispatcher, executor, types
-from aiogram.types import KeyboardButton, ReplyKeyboardMarkup
-from dotenv import load_dotenv
-from motor.motor_asyncio import AsyncIOMotorClient
-from aiogram.types import ParseMode
-from newsmarket import get_market_news
-from companynews import get_news
-from yf import graph
-from yf import news as yf_news
-from yf import  get_recommendations_summary
-from investgpt import main as testgpt_main
-from spheregpt import main as spheregpt_main
-from aiogram.dispatcher import FSMContext
-from aiogram.dispatcher.filters.state import State, StatesGroup
-
-
-
+from library import *
 load_dotenv()
+
+PICK_STATES = {}
+CHECK_STATES = {}
 
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
 MONGO_URI = os.getenv("MONGO_URI")
@@ -30,7 +14,9 @@ db = client[MONGO_DB]
 bot = Bot(token=TELEGRAM_TOKEN)
 dp = Dispatcher(bot)
 
-
+user_manager = user.UserInteractionHandler(
+db.users_collection, bot
+)
 
 keyboard = ReplyKeyboardMarkup(
     keyboard=[
@@ -70,6 +56,8 @@ async def handle_start(message: types.Message):
         "_id": user_id,
         "user_paid": user_paid,
     }
+    PICK_STATES[message.from_user.id] = 0
+    CHECK_STATES[message.from_user.id] = 0
 
     db.users.update_one({"_id": user_id}, {"$set": user_data}, upsert=True)
 
@@ -94,8 +82,56 @@ async def handle_start(message: types.Message):
 
 Присоединяйся к нам и давай зарабатывать вместе! 💰
 
-📈 Не упусти свой шанс на финансовый успех с Narasense AI! 🚀""", reply_markup=keyboard
+📈 Не упусти свой шанс на финансовый успех с Narasense AI! 🚀"""
     )
+    if bool(user_manager.find_user(user_data)) == False:
+        welcome_msg = f"Привет, {message.from_user.first_name}. Чтобы начать пользоваться ботом, сперва пройдите опрос."
+        question_msg = "Capital preservation"
+        await bot.send_message(
+            message.from_user.id, welcome_msg
+        )
+        await bot.send_message(
+            message.from_user.id, question_msg, reply_markup=qs.first_keyboard
+        )
+        
+
+@dp.callback_query_handler(lambda c: c.data.startswith('answer_'))
+async def process_answer(callback_query: CallbackQuery):
+    answer = callback_query.data.replace('answer_', '')
+    PICK_STATES[callback_query.from_user.id] += int (answer)
+    CHECK_STATES[callback_query.from_user.id] += int (1)
+    print(PICK_STATES[callback_query.from_user.id])
+    skip_count = CHECK_STATES[callback_query.from_user.id]
+    await bot.answer_callback_query(callback_query.id, f"Вы выбрали ответ: {answer}")
+    keyboard = InlineKeyboardMarkup()
+    key1 = ''
+    if CHECK_STATES[callback_query.from_user.id] != 6:
+        for key, value in qs.questions.items():
+            if skip_count > 1: 
+                skip_count -= 1
+                continue
+            key1 = key
+            for answer in value:
+                item_after_count = answer.split()
+                final = ""
+                for item in item_after_count:
+                    if 'answer_' in item:
+                        continue
+                    final += f'{item} '
+                keyboard.add(InlineKeyboardButton(final, callback_data=item_after_count[0]))
+            break
+        await bot.edit_message_text(key1, chat_id=callback_query.from_user.id, message_id=callback_query.message.message_id, reply_markup=keyboard)
+    else:
+        await bot.edit_message_text(f"Вы закончили тест. Ваш результат: {PICK_STATES[callback_query.from_user.id]}", chat_id=callback_query.from_user.id, message_id=callback_query.message.message_id)
+        congr = "Теперь вы можете пользоваться ботом"
+        await bot.send_message(callback_query.from_user.id,congr,reply_markup=keyboard)
+        user1 = {
+            "_id": callback_query.from_user.id,
+            "_name": callback_query.from_user.first_name,
+            "_news": True,
+            "_points": PICK_STATES[callback_query.from_user.id],
+        }
+        user_manager.add_user(user1)
 
 @dp.message_handler(lambda message: message.text == "Функции")
 async def handle_functions(message: types.Message):
