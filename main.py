@@ -86,7 +86,7 @@ async def handle_start(message: types.Message):
     )
     if bool(user_manager.find_user(user_data)) == False:
         welcome_msg = f"Привет, {message.from_user.first_name}. Чтобы начать пользоваться ботом, сперва пройдите опрос."
-        question_msg = "Capital preservation"
+        question_msg = "1. Investment Goals:"
         await bot.send_message(
             message.from_user.id, welcome_msg
         )
@@ -102,10 +102,9 @@ async def process_answer(callback_query: CallbackQuery):
     CHECK_STATES[callback_query.from_user.id] += int (1)
     print(PICK_STATES[callback_query.from_user.id])
     skip_count = CHECK_STATES[callback_query.from_user.id]
-    await bot.answer_callback_query(callback_query.id, f"Вы выбрали ответ: {answer}")
     keyboard = InlineKeyboardMarkup()
     key1 = ''
-    if CHECK_STATES[callback_query.from_user.id] != 6:
+    if CHECK_STATES[callback_query.from_user.id] != 8:
         for key, value in qs.questions.items():
             if skip_count > 1: 
                 skip_count -= 1
@@ -131,6 +130,7 @@ async def process_answer(callback_query: CallbackQuery):
             "_news": True,
             "_points": PICK_STATES[callback_query.from_user.id],
         }
+        
         user_manager.add_user(user1)
 
 @dp.message_handler(lambda message: message.text == "Функции")
