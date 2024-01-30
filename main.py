@@ -55,11 +55,14 @@ async def handle_start(message: types.Message):
     user_data = {
         "_id": user_id,
         "user_paid": user_paid,
+        "_name": message.from_user.first_name,
+        "_news": True,
+        "_points": PICK_STATES[message.from_user.id],
     }
     PICK_STATES[message.from_user.id] = 0
     CHECK_STATES[message.from_user.id] = 0
 
-    db.users.update_one({"_id": user_id}, {"$set": user_data}, upsert=True)
+    # db.users.update_one({"_id": user_id}, {"$set": user_data}, upsert=True)
 
     await message.reply(
         """🚀 Добро пожаловать в мир инвестиций с Narasense AI! 📈
@@ -127,7 +130,8 @@ async def process_answer(callback_query: CallbackQuery):
         congr = "Теперь вы можете пользоваться ботом"
         await bot.send_message(callback_query.from_user.id,congr,reply_markup=keyboard)
         user1 = {
-            "_id": callback_query.from_user.id,
+            "_id": callback_query.from_user.user_id,
+            "user_paid": False,
             "_name": callback_query.from_user.first_name,
             "_news": True,
             "_points": PICK_STATES[callback_query.from_user.id],
