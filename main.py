@@ -92,10 +92,10 @@ async def handle_start(message: types.Message):
         welcome_msg = f"Привет, {message.from_user.first_name}. Чтобы начать пользоваться ботом, сперва пройдите опрос."
         question_msg = "1. Investment Goals:"
         await bot.send_message(
-            message.from_user.id, welcome_msg
+            chat_id=message.from_user.id,text= welcome_msg
         )
         await bot.send_message(
-            message.from_user.id, question_msg, reply_markup=qs.first_keyboard
+            chat_id=message.from_user.id, text=question_msg, reply_markup=qs.first_keyboard
         )
     else:
         bot(chat_id=message.from_user.id, text="Вы уже зарегистрированы", reply_markup=keyboard)
@@ -110,7 +110,7 @@ async def process_answer(callback_query: CallbackQuery):
     skip_count = CHECK_STATES[callback_query.from_user.id]
     keyboard1 = InlineKeyboardMarkup()
     key1 = ''
-    if CHECK_STATES[callback_query.from_user.id] != 8:
+    if CHECK_STATES[callback_query.from_user.id] < 7:
         for key, value in qs.questions.items():
             if skip_count > 1: 
                 skip_count -= 1
@@ -127,9 +127,9 @@ async def process_answer(callback_query: CallbackQuery):
             break
         await bot.edit_message_text(key1, chat_id=callback_query.from_user.id, message_id=callback_query.message.message_id, reply_markup=keyboard1)
     else:
-        await bot.edit_message_text(f"Вы закончили тест. Ваш результат: {PICK_STATES[callback_query.from_user.id]}", chat_id=callback_query.from_user.id, message_id=callback_query.message.message_id)
+        await bot.edit_message_text(text=f"Вы закончили тест. Ваш результат: {PICK_STATES[callback_query.from_user.id]}", chat_id=callback_query.from_user.id, message_id=callback_query.message.message_id)
         congr = "Теперь вы можете пользоваться ботом"
-        await bot.send_message(callback_query.from_user.id,congr,reply_markup=keyboard)
+        await bot.send_message(chat_id=callback_query.from_user.id,text=congr,reply_markup=keyboard)
         user1 = {
             "_id": callback_query.from_user.user_id,
             "user_paid": False,
