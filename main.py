@@ -10,12 +10,14 @@ MONGO_DB = os.getenv("MONGO_DB")
 
 client = AsyncIOMotorClient(MONGO_URI)
 db = client[MONGO_DB]
+users_collection = db["users"]
+
 
 bot = Bot(token=TELEGRAM_TOKEN)
 dp = Dispatcher(bot)
 
 user_manager = user.UserInteractionHandler(
-db.users_collection, bot
+users_collection, bot
 )
 
 keyboard = ReplyKeyboardMarkup(
