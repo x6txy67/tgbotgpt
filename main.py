@@ -50,6 +50,9 @@ keyboard_functions = ReplyKeyboardMarkup(
 
 @dp.message_handler(commands=["start"])
 async def handle_start(message: types.Message):
+    
+    PICK_STATES[message.from_user.id] = 0
+    CHECK_STATES[message.from_user.id] = 0
     user_id = message.from_user.id
     user_paid = False
     user_data = {
@@ -59,8 +62,6 @@ async def handle_start(message: types.Message):
         "_news": True,
         "_points": PICK_STATES[message.from_user.id],
     }
-    PICK_STATES[message.from_user.id] = 0
-    CHECK_STATES[message.from_user.id] = 0
 
     # db.users.update_one({"_id": user_id}, {"$set": user_data}, upsert=True)
 
