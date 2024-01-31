@@ -35,7 +35,6 @@ dp = Dispatcher(bot)
 
 
 
-USER_STATES = {}
 PICK_STATES = {}
 CHECK_STATES = {}
 
