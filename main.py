@@ -34,7 +34,7 @@ bot = Bot(token=TELEGRAM_TOKEN)
 dp = Dispatcher(bot)
 
 
-
+USER_STATE = {}
 PICK_STATES = {}
 CHECK_STATES = {}
 
@@ -75,6 +75,7 @@ async def find_user(user):
 
 @dp.message_handler(commands=["start"])
 async def handle_start(message: types.Message):
+    USER_STATE[message.from_user.id] = ''
     PICK_STATES[message.from_user.id] = 0
     CHECK_STATES[message.from_user.id] = 0
     user_id = message.from_user.id
@@ -124,7 +125,7 @@ async def handle_start(message: types.Message):
         await bot.send_message(
             message.from_user.id, welcome_msg, reply_markup=keyboard
         )
-        
+
 @dp.callback_query_handler(lambda c: c.data.startswith('answer_'))
 async def process_answer(callback_query: CallbackQuery):
     answer = callback_query.data.replace('answer_', '')
@@ -182,47 +183,56 @@ async def handle_market_news(message: types.Message):
 
 @dp.message_handler(lambda message: message.text == "Получить новости компании")
 async def handler_company_news(message: types.Message):
+    USER_STATE[message.from_user.id] = message.text
     await message.answer("Введите тикер компании:")
-
-    @dp.message_handler(content_types=types.ContentTypes.TEXT)
-    async def process_ticker_input(message: types.Message):
-        ticker = message.text.upper() 
-        response = get_news(ticker)
-
-        await message.answer(response, parse_mode=ParseMode.MARKDOWN,reply_markup=keyboard)
 
 
 @dp.message_handler(lambda message: message.text == "Рекомендации")
 async def handle_recommendations(message: types.Message):
+    USER_STATE[message.from_user.id] = message.text
     await message.answer("Введите тикер компании:")
-    @dp.message_handler(content_types=types.ContentTypes.TEXT)
-    async def process_ticker(message: types.Message):
-        ticker = message.text.upper()
-        response = get_recommendations_summary(ticker)
-        await message.answer(response,parse_mode=types.ParseMode.MARKDOWN,reply_markup=keyboard)
         
 
 @dp.message_handler(lambda message: message.text == "Новости Yahoo Finance")
 async def handler_company_news(message: types.Message):
+    USER_STATE[message.from_user.id] = message.text
     await message.answer("Введите тикер компании:")
-    @dp.message_handler(content_types=types.ContentTypes.TEXT)
-    async def process_ticker(message: types.Message):
-        ticker = message.text.upper()
-        response = yf_news(ticker)
-        await message.answer(response,parse_mode=types.ParseMode.MARKDOWN,reply_markup=keyboard)
 
 
 @dp.message_handler(lambda message: message.text == "График цен акции")
 async def handler_graph(message: types.Message):
+    USER_STATE[message.from_user.id] = message.text
     await message.answer("Введите тикер компании:")
-    @dp.message_handler(content_types=types.ContentTypes.TEXT)
-    async def process_ticker(message: types.Message):
+
+
+@dp.message_handler(content_types=types.ContentTypes.TEXT)
+async def process_ticker(message: types.Message):
+    if USER_STATE[message.from_user.id] == 'Рекомендации':
+        ticker = message.text.upper()
+        response = get_recommendations_summary(ticker)
+        await message.answer(response,parse_mode=types.ParseMode.MARKDOWN,reply_markup=keyboard)
+        USER_STATE[message.from_user.id] = ''
+    elif USER_STATE[message.from_user.id] == 'Новости Yahoo Finance':
+        ticker = message.text.upper()
+        response = yf_news(ticker)
+        await message.answer(response,parse_mode=types.ParseMode.MARKDOWN,reply_markup=keyboard)
+        USER_STATE[message.from_user.id] = ''
+    elif USER_STATE[message.from_user.id] == 'График цен акции':
         ticker = message.text.upper()
         image_path = graph(ticker)
         with open(image_path, 'rb') as photo:
             await message.reply_photo(photo, caption=f'{ticker} Stock Price Over Time')
-
         os.remove(image_path)
+        USER_STATE[message.from_user.id] = ''
+    elif USER_STATE[message.from_user.id] == 'Получить новости компании':
+        ticker = message.text.upper() 
+        response = get_news(ticker)
+
+        await message.answer(response, parse_mode=ParseMode.MARKDOWN,reply_markup=keyboard)
+        USER_STATE[message.from_user.id] = ''
+    else:
+        pass
+        
 
 
 @dp.message_handler(commands=["graph"])
