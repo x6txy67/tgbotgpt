@@ -9,7 +9,7 @@ ticker = input()
 
 response = g4f.ChatCompletion.create(
     model=g4f.models.gpt_4,
-    messages=[{"role": "user", "content": f"""Do not say hello. Just give me what i want.Send only text. Do readable text .NEWS summarize shortly and in russian.{news(ticker)}.Ignore the links"""}],
+    messages=[{"role": "user", "content": f"""Не говори "привет". Просто дайте мне то, что я хочу. Присылайте только текст. Делайте читабельный текст .NEWS summary shortly and in russian.{news(ticker)}.Не обращайте внимания на ссылки """}],
 )  
 
 

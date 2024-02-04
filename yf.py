@@ -38,7 +38,7 @@ def get_recommendations_summary(ticker):
     # Get recommendations summary
     recommendations_df = msft.recommendations_summary
 
-    formatted_data = "Recommendations Summary for {}: \n\n".format(ticker)
+    formatted_data = "Резюме рекомендаций для {}: \n\n".format(ticker)
     formatted_data += recommendations_df.to_markdown(index=False)
 
     return formatted_data

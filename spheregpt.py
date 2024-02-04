@@ -27,7 +27,7 @@ def main():
         embeddings = OpenAIEmbeddings()
         knowledge_base = FAISS.from_texts(chunks, embeddings)
 
-        user_question = "You are a professional financier and economist.Do not say you are a professional financier and economist. I need 3 promising areas for investment. Keep professionalism and readably write a text in which spheres it is better to invest in. Briefly describe each area. Don't say you are a professional economist and financier"
+        user_question = "Не говорите, что вы профессиональный финансист и экономист. Мне нужны 3 перспективные сферы для инвестиций. Сохраняйте профессионализм и читабельно напишите текст, в какие сферы лучше инвестировать. Кратко опишите каждую сферу. Не говорите, что вы профессиональный экономист и финансист"
         if user_question:
             docs = knowledge_base.similarity_search(user_question)
 

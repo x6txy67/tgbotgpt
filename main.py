@@ -245,12 +245,12 @@ async def handler_company_graph(message: types.Message):
 
 
         with open(image_path, 'rb') as photo:
-            await message.reply_photo(photo, caption=f'{ticker} Stock Price Over Time')
+            await message.reply_photo(photo, caption=f'{ticker} Цена акций с течением времени')
 
         os.remove(image_path)
 
     except IndexError:
-        await message.reply("Please provide a company ticker. For example: /graph AAPL")
+        await message.reply("Пожалуйста, укажите тикер компании. Например: /graph AAPL")
 
 @dp.message_handler(lambda message: message.text == "Лучшие компании для инвестирования! 🌐")
 async def handle_test_gpt(message: types.Message):
