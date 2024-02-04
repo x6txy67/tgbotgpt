@@ -126,6 +126,48 @@ async def handle_start(message: types.Message):
             message.from_user.id, welcome_msg, reply_markup=keyboard
         )
 
+
+@dp.message_handler(commands=["graph"])
+async def handler_company_graph(message: types.Message):
+    try:
+        ticker = message.text.split(" ", 1)[1].strip()
+
+
+        image_path = graph(ticker)
+
+
+        with open(image_path, 'rb') as photo:
+            await message.reply_photo(photo, caption=f'{ticker} Цена акций с течением времени')
+
+        os.remove(image_path)
+
+    except IndexError:
+        await message.reply("Пожалуйста, укажите тикер компании. Например: /graph AAPL")
+
+@dp.message_handler(lambda message: message.text == "Лучшие компании для инвестирования! 🌐")
+async def handle_test_gpt(message: types.Message):
+    image_path = "generated_image.png"
+    with open(image_path, "rb") as image_file:
+        await bot.send_photo(message.chat.id, photo=image_file)
+    loading_message = await message.reply("Загрузка...")
+    response = testgpt_main()
+    await asyncio.sleep(2)
+
+    await bot.edit_message_text(
+        response, chat_id=loading_message.chat.id, message_id=loading_message.message_id
+    )
+
+@dp.message_handler(lambda message: message.text == "Лучшие сферы для Инвестирования в 2024 году! 🚀")
+async def handle_test_gpt(message: types.Message):
+    loading_message = await message.reply("Загрузка...")
+    response = spheregpt_main()
+    await asyncio.sleep(2)
+
+    await bot.edit_message_text(
+        response, chat_id=loading_message.chat.id, message_id=loading_message.message_id
+    )
+
+
 @dp.callback_query_handler(lambda c: c.data.startswith('answer_'))
 async def process_answer(callback_query: CallbackQuery):
     answer = callback_query.data.replace('answer_', '')
@@ -235,45 +277,45 @@ async def process_ticker(message: types.Message):
         
 
 
-@dp.message_handler(commands=["graph"])
-async def handler_company_graph(message: types.Message):
-    try:
-        ticker = message.text.split(" ", 1)[1].strip()
+# @dp.message_handler(commands=["graph"])
+# async def handler_company_graph(message: types.Message):
+#     try:
+#         ticker = message.text.split(" ", 1)[1].strip()
 
 
-        image_path = graph(ticker)
+#         image_path = graph(ticker)
 
 
-        with open(image_path, 'rb') as photo:
-            await message.reply_photo(photo, caption=f'{ticker} Цена акций с течением времени')
+#         with open(image_path, 'rb') as photo:
+#             await message.reply_photo(photo, caption=f'{ticker} Цена акций с течением времени')
 
-        os.remove(image_path)
+#         os.remove(image_path)
 
-    except IndexError:
-        await message.reply("Пожалуйста, укажите тикер компании. Например: /graph AAPL")
+#     except IndexError:
+#         await message.reply("Пожалуйста, укажите тикер компании. Например: /graph AAPL")
 
-@dp.message_handler(lambda message: message.text == "Лучшие компании для инвестирования! 🌐")
-async def handle_test_gpt(message: types.Message):
-    image_path = "generated_image.png"
-    with open(image_path, "rb") as image_file:
-        await bot.send_photo(message.chat.id, photo=image_file)
-    loading_message = await message.reply("Загрузка...")
-    response = testgpt_main()
-    await asyncio.sleep(2)
+# @dp.message_handler(lambda message: message.text == "Лучшие компании для инвестирования! 🌐")
+# async def handle_test_gpt(message: types.Message):
+#     image_path = "generated_image.png"
+#     with open(image_path, "rb") as image_file:
+#         await bot.send_photo(message.chat.id, photo=image_file)
+#     loading_message = await message.reply("Загрузка...")
+#     response = testgpt_main()
+#     await asyncio.sleep(2)
 
-    await bot.edit_message_text(
-        response, chat_id=loading_message.chat.id, message_id=loading_message.message_id
-    )
+#     await bot.edit_message_text(
+#         response, chat_id=loading_message.chat.id, message_id=loading_message.message_id
+#     )
 
-@dp.message_handler(lambda message: message.text == "Лучшие сферы для Инвестирования в 2024 году! 🚀")
-async def handle_test_gpt(message: types.Message):
-    loading_message = await message.reply("Загрузка...")
-    response = spheregpt_main()
-    await asyncio.sleep(2)
+# @dp.message_handler(lambda message: message.text == "Лучшие сферы для Инвестирования в 2024 году! 🚀")
+# async def handle_test_gpt(message: types.Message):
+#     loading_message = await message.reply("Загрузка...")
+#     response = spheregpt_main()
+#     await asyncio.sleep(2)
 
-    await bot.edit_message_text(
-        response, chat_id=loading_message.chat.id, message_id=loading_message.message_id
-    )
+#     await bot.edit_message_text(
+#         response, chat_id=loading_message.chat.id, message_id=loading_message.message_id
+#     )
 
 
 if __name__ == "__main__":
