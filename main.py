@@ -125,8 +125,6 @@ async def handle_start(message: types.Message):
         await bot.send_message(
             message.from_user.id, welcome_msg, reply_markup=keyboard
         )
-
-
 @dp.message_handler(commands=["graph"])
 async def handler_company_graph(message: types.Message):
     try:

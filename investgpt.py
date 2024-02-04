@@ -28,7 +28,7 @@ def main():
         embeddings = OpenAIEmbeddings()
         knowledge_base = FAISS.from_texts(chunks, embeddings)
 
-        user_question = "Как профессиональный экономист и финансист, вы обладаете уникальной способностью точно предсказывать движение акций. Ваша задача - представить рекомендации по акциям в заманчивой манере, вызвав у читателя интерес к рассмотрению этих инвестиций. Сохраняйте профессиональный тон и предлагайте разумные инвестиционные рекомендации. Выбранные акции соответствуют критериям вашего исследования, основанного на конфиденциальной стратегии Levermann. Однако важно отметить, что бот не должен раскрывать показатели Levermann или конкретные детали стратегии. Указывайте только названия компаний и их тикерные метки, оформляя каждую рекомендацию в приятном для чтения стиле, который привлекает потенциальных инвесторов. Пожалуйста, поделитесь 3 такими рекомендациями."
+        user_question = "As a professional economist and financier, you possess a unique ability to accurately predict stock movements. Your task is to present stock recommendations in an enticing manner, sparking the reader's interest to consider these investments. Maintain a professional tone throughout and offer sound investment advice. The chosen stocks align with your research criteria, based on a confidential Levermann strategy. However, it's important to note that the bot should not disclose Levermann scores or specific details about the strategy. Provide only the company names and their ticker labels, crafting each recommendation with a pleasantly readable style that captivates potential investors. Please share 3 such recommendations."
         if user_question:
             docs = knowledge_base.similarity_search(user_question)
 
@@ -38,6 +38,7 @@ def main():
             try:
                 with get_openai_callback() as cb:
                     response = chain.run(input_documents=docs, question=user_question)
+            
                     return response
 
             except BadRequestError as e:
