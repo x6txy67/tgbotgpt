@@ -1,13 +1,14 @@
 from dotenv import load_dotenv
 from langchain.callbacks import get_openai_callback
 from langchain.chains.question_answering import load_qa_chain
-from langchain_openai import OpenAIEmbeddings
-from langchain_openai import OpenAI
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.vectorstores import FAISS
+from langchain_openai import OpenAI, OpenAIEmbeddings
 from openai import BadRequestError
 from PyPDF2 import PdfReader
+from libretranslatepy import LibreTranslateAPI
 
+lt = LibreTranslateAPI("https://translate.terraprint.co/")
 
 def main():
     load_dotenv()
@@ -38,8 +39,8 @@ def main():
             try:
                 with get_openai_callback() as cb:
                     response = chain.run(input_documents=docs, question=user_question)
-            
-                    return response
+
+                return lt.translate(response, "en", "ru")
 
             except BadRequestError as e:
                 print(f"OpenAI API Error: {e}")
