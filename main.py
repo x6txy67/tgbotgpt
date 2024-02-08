@@ -99,7 +99,7 @@ async def handle_start(message: types.Message):
 
     if not user_data_from_db:
         welcome_msg = f"Привет, {message.from_user.first_name}. Чтобы начать пользоваться ботом, сперва пройдите опрос."
-        question_msg = "1. Investment Goals:"
+        question_msg = "1. Инвестиционные цели:"
         await bot.send_message(message.from_user.id, welcome_msg)
         await bot.send_message(
             message.from_user.id, question_msg, reply_markup=qs.first_keyboard
