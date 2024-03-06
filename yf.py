@@ -1,8 +1,10 @@
 import yfinance as yf
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 import os
 import warnings
-
+from mplchart.chart import Chart
+from mplchart.primitives import Candlesticks, Volume
+from mplchart.indicators import ROC, SMA, EMA, RSI, MACD
 
 TEMP_IMAGE_DIR = "temp_images"
 
@@ -12,30 +14,28 @@ warnings.simplefilter(action='ignore', category=FutureWarning)
 
 
 def graph(ticker):
+
     msft = yf.Ticker(ticker)
-    hist = msft.history(period="max")
-    
-    plt.figure(figsize=(10, 6))
-    plt.plot(hist.index, hist['Close'], label='Close Price', color='red')
-    plt.title(f'{ticker} Stock Price Over Time')
-    plt.xlabel('Date')
-    plt.ylabel('Close Price (USD)')
-    plt.legend()
-    plt.grid(True)
-
+    hist = msft.history(period="5y")
     image_path = os.path.join(TEMP_IMAGE_DIR, f'{ticker}_stock_price.png')
-    plt.savefig(image_path)
-    plt.close()
+    max_bars = 250
 
+    indicators = [
+        Candlesticks(), SMA(50), SMA(200), Volume(),
+        RSI(),
+        MACD(),
+    ]
+
+    chart = Chart(title=ticker, max_bars=max_bars)
+    chart.plot(hist, indicators)
+    chart.figure.savefig(image_path)
     return image_path
-
 
 
 
 def get_recommendations_summary(ticker):
     msft = yf.Ticker(ticker)
     
-    # Get recommendations summary
     recommendations_df = msft.recommendations_summary
 
     formatted_data = "Резюме рекомендаций для {}: \n\n".format(ticker)

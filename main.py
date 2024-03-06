@@ -1,6 +1,6 @@
 import asyncio
 import os
-
+from askgpt import askbot
 from aiogram import Bot, Dispatcher, executor, types
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import State, StatesGroup
@@ -48,7 +48,7 @@ keyboard = ReplyKeyboardMarkup(
             KeyboardButton(text="Лучшие компании для инвестирования! 🌐"),
         ],
         [
-            KeyboardButton(text="Лучшие сферы для Инвестирования в 2024 году! 🚀"),
+            KeyboardButton(text="Сектора"),
         ],
         [
             KeyboardButton(text="Функции"),
@@ -164,7 +164,7 @@ async def handle_test_gpt(message: types.Message):
 
 
 @dp.message_handler(
-    lambda message: message.text == "Лучшие сферы для Инвестирования в 2024 году! 🚀"
+    lambda message: message.text == "Сектора"
 )
 async def handle_test_gpt(message: types.Message):
     loading_message = await message.reply("Загрузка...")
@@ -269,39 +269,46 @@ async def handler_graph(message: types.Message):
     USER_STATE[message.from_user.id] = message.text
     await message.answer("Введите тикер компании:")
 
+@dp.message_handler(commands=['ask'])
+async def askgpt(message: types.Message):
+    await message.answer(text=askbot(message.text), reply_markup=keyboard)
+
 
 @dp.message_handler(content_types=types.ContentTypes.TEXT)
 async def process_ticker(message: types.Message):
-    if USER_STATE[message.from_user.id] == "Рекомендации":
-        ticker = message.text.upper()
-        response = get_recommendations_summary(ticker)
-        await message.answer(
-            response, parse_mode=types.ParseMode.MARKDOWN, reply_markup=keyboard
-        )
-        USER_STATE[message.from_user.id] = ""
-    elif USER_STATE[message.from_user.id] == "Новости Yahoo Finance":
-        ticker = message.text.upper()
-        response = yf_news(ticker)
-        await message.answer(
-            response, parse_mode=types.ParseMode.MARKDOWN, reply_markup=keyboard
-        )
-        USER_STATE[message.from_user.id] = ""
-    elif USER_STATE[message.from_user.id] == "График цен акции":
-        ticker = message.text.upper()
-        image_path = graph(ticker)
-        with open(image_path, "rb") as photo:
-            await message.reply_photo(photo, caption=f"{ticker} Stock Price Over Time")
-        os.remove(image_path)
-        USER_STATE[message.from_user.id] = ""
-    elif USER_STATE[message.from_user.id] == "Получить новости компании":
-        ticker = message.text.upper()
-        response = get_news(ticker)
+    try:
+        if USER_STATE[message.from_user.id] == "Рекомендации":
+            ticker = message.text.upper()
+            response = get_recommendations_summary(ticker)
+            await message.answer(
+                response, parse_mode=types.ParseMode.MARKDOWN, reply_markup=keyboard
+            )
+            USER_STATE[message.from_user.id] = ""
+        elif USER_STATE[message.from_user.id] == "Новости Yahoo Finance":
+            ticker = message.text.upper()
+            response = yf_news(ticker)
+            await message.answer(
+                response, parse_mode=types.ParseMode.MARKDOWN, reply_markup=keyboard
+            )
+            USER_STATE[message.from_user.id] = ""
+        elif USER_STATE[message.from_user.id] == "График цен акции":
+            ticker = message.text.upper()
+            image_path = graph(ticker)
+            with open(image_path, "rb") as photo:
+                await message.reply_photo(photo, caption=f"{ticker} Stock Price Over Time")
+            os.remove(image_path)
+            USER_STATE[message.from_user.id] = ""
+        elif USER_STATE[message.from_user.id] == "Получить новости компании":
+            ticker = message.text.upper()
+            response = get_news(ticker)
 
-        await message.answer(
-            response, parse_mode=ParseMode.MARKDOWN, reply_markup=keyboard
-        )
-        USER_STATE[message.from_user.id] = ""
-    else:
+            await message.answer(
+                response, parse_mode=ParseMode.MARKDOWN, reply_markup=keyboard
+            )
+            USER_STATE[message.from_user.id] = ""
+        else:
+            pass
+    except:
         pass
 
 
@@ -335,7 +342,7 @@ async def process_ticker(message: types.Message):
 #         response, chat_id=loading_message.chat.id, message_id=loading_message.message_id
 #     )
 
-# @dp.message_handler(lambda message: message.text == "Лучшие сферы для Инвестирования в 2024 году! 🚀")
+# @dp.message_handler(lambda message: message.text == "Сектора")
 # async def handle_test_gpt(message: types.Message):
 #     loading_message = await message.reply("Загрузка...")
 #     response = spheregpt_main()
