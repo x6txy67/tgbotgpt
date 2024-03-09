@@ -13,9 +13,9 @@ from aiogram.types import (
     ReplyKeyboardMarkup,
 )
 from dotenv import load_dotenv
-from motor.motor_asyncio import AsyncIOMotorClient
+# from motor.motor_asyncio import AsyncIOMotorClient
 
-import question as qs
+# import question as qs
 from companynews import get_news
 from investgpt import main as testgpt_main
 from newsmarket import get_market_news
@@ -26,12 +26,12 @@ from yf import news as yf_news
 load_dotenv()
 
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
-MONGO_URI = os.getenv("MONGO_URI")
-MONGO_DB = os.getenv("MONGO_DB")
+# MONGO_URI = os.getenv("MONGO_URI")
+# MONGO_DB = os.getenv("MONGO_DB")
 
-client = AsyncIOMotorClient(MONGO_URI)
-db = client[MONGO_DB]
-user_collections = db["user"]
+# client = AsyncIOMotorClient(MONGO_URI)
+# db = client[MONGO_DB]
+# user_collections = db["user"]
 
 bot = Bot(token=TELEGRAM_TOKEN)
 dp = Dispatcher(bot)
@@ -76,9 +76,9 @@ keyboard_functions = ReplyKeyboardMarkup(
 )
 
 
-async def find_user(user):
-    result = await user_collections.find_one(user)
-    return result
+# async def find_user(user):
+#     result = await user_collections.find_one(user)
+#     return result
 
 
 @dp.message_handler(commands=["start"])
@@ -86,26 +86,26 @@ async def handle_start(message: types.Message):
     USER_STATE[message.from_user.id] = ""
     PICK_STATES[message.from_user.id] = 0
     CHECK_STATES[message.from_user.id] = 0
-    user_id = message.from_user.id
-    user_paid = False
-    user_data = {
-        "_id": user_id,
-        "user_paid": user_paid,
-        "name": message.from_user.first_name,
-        "news": True,
-    }
+    # user_id = message.from_user.id
+    # user_paid = False
+    # user_data = {
+    #     "_id": user_id,
+    #     "user_paid": user_paid,
+    #     "name": message.from_user.first_name,
+    #     "news": True,
+    # }
 
-    user_data_from_db = await find_user(user_data)
+    # user_data_from_db = await find_user(user_data)
 
-    if not user_data_from_db:
-        welcome_msg = f"Привет, {message.from_user.first_name}. Чтобы начать пользоваться ботом, сперва пройдите опрос."
-        question_msg = "1. Инвестиционные цели:"
-        await bot.send_message(message.from_user.id, welcome_msg)
-        await bot.send_message(
-            message.from_user.id, question_msg, reply_markup=qs.first_keyboard
-        )
-    else:
-        welcome_msg = """🚀 Добро пожаловать в мир инвестиций с Narasense AI! 📈
+    # if not user_data_from_db:
+        # welcome_msg = f"Привет, {message.from_user.first_name}. Чтобы начать пользоваться ботом, сперва пройдите опрос."
+        # question_msg = "1. Инвестиционные цели:"
+        # await bot.send_message(message.from_user.id, welcome_msg)
+        # await bot.send_message(
+        #     message.from_user.id, question_msg, reply_markup=qs.first_keyboard
+        # )
+    # else:
+    welcome_msg = """🚀 Добро пожаловать в мир инвестиций с Narasense AI! 📈
 
 Ты хочешь увеличить свои доходы и стать успешным инвестором? Не знаешь, с какой акции начать? Мы здесь, чтобы помочь тебе в этом увлекательном путешествии!
 
@@ -126,7 +126,7 @@ async def handle_start(message: types.Message):
 Присоединяйся к нам и давай зарабатывать вместе! 💰
 
 📈 Не упусти свой шанс на финансовый успех с Narasense AI! 🚀"""
-        await bot.send_message(message.from_user.id, welcome_msg, reply_markup=keyboard)
+    await bot.send_message(message.chat.id, welcome_msg , reply_markup=keyboard)
 
 
 @dp.message_handler(commands=["graph"])
@@ -176,56 +176,56 @@ async def handle_test_gpt(message: types.Message):
     )
 
 
-@dp.callback_query_handler(lambda c: c.data.startswith("answer_"))
-async def process_answer(callback_query: CallbackQuery):
-    answer = callback_query.data.replace("answer_", "")
-    PICK_STATES[callback_query.from_user.id] += int(answer)
-    CHECK_STATES[callback_query.from_user.id] += int(1)
+# @dp.callback_query_handler(lambda c: c.data.startswith("answer_"))
+# async def process_answer(callback_query: CallbackQuery):
+#     answer = callback_query.data.replace("answer_", "")
+#     PICK_STATES[callback_query.from_user.id] += int(answer)
+#     CHECK_STATES[callback_query.from_user.id] += int(1)
 
-    skip_count = CHECK_STATES[callback_query.from_user.id]
-    keyboard = InlineKeyboardMarkup()
-    key1 = ""
-    if CHECK_STATES[callback_query.from_user.id] != 7:
-        for key, value in qs.questions.items():
-            if skip_count > 1:
-                skip_count -= 1
-                continue
-            key1 = key
-            for answer in value:
-                item_after_count = answer.split()
-                final = ""
-                for item in item_after_count:
-                    if "answer_" in item:
-                        continue
-                    final += f"{item} "
-                keyboard.add(
-                    InlineKeyboardButton(final, callback_data=item_after_count[0])
-                )
-            break
-        await bot.edit_message_text(
-            key1,
-            chat_id=callback_query.from_user.id,
-            message_id=callback_query.message.message_id,
-            reply_markup=keyboard,
-        )
-    else:
-        await bot.edit_message_text(
-            f"Вы закончили тест. Ваш результат: {PICK_STATES[callback_query.from_user.id]}",
-            chat_id=callback_query.from_user.id,
-            message_id=callback_query.message.message_id,
-        )
-        congr = "Теперь вы можете пользоваться Ботом!"
-        await bot.send_message(
-            callback_query.from_user.id, congr, reply_markup=keyboard
-        )
-        user1 = {
-            "_id": callback_query.from_user.id,
-            "user_paid": False,
-            "name": callback_query.from_user.first_name,
-            "news": True,
-            "points": PICK_STATES[callback_query.from_user.id],
-        }
-        user_collections.insert_one(user1)
+#     skip_count = CHECK_STATES[callback_query.from_user.id]
+#     keyboard = InlineKeyboardMarkup()
+#     key1 = ""
+#     if CHECK_STATES[callback_query.from_user.id] != 7:
+#         for key, value in qs.questions.items():
+#             if skip_count > 1:
+#                 skip_count -= 1
+#                 continue
+#             key1 = key
+#             for answer in value:
+#                 item_after_count = answer.split()
+#                 final = ""
+#                 for item in item_after_count:
+#                     if "answer_" in item:
+#                         continue
+#                     final += f"{item} "
+#                 keyboard.add(
+#                     InlineKeyboardButton(final, callback_data=item_after_count[0])
+#                 )
+#             break
+#         await bot.edit_message_text(
+#             key1,
+#             chat_id=callback_query.from_user.id,
+#             message_id=callback_query.message.message_id,
+#             reply_markup=keyboard,
+#         )
+#     else:
+#         await bot.edit_message_text(
+#             f"Вы закончили тест. Ваш результат: {PICK_STATES[callback_query.from_user.id]}",
+#             chat_id=callback_query.from_user.id,
+#             message_id=callback_query.message.message_id,
+#         )
+#         congr = "Теперь вы можете пользоваться Ботом!"
+#         await bot.send_message(
+#             callback_query.from_user.id, congr, reply_markup=keyboard
+#         )
+#         user1 = {
+#             "_id": callback_query.from_user.id,
+#             "user_paid": False,
+#             "name": callback_query.from_user.first_name,
+#             "news": True,
+#             "points": PICK_STATES[callback_query.from_user.id],
+#         }
+        # user_collections.insert_one(user1)
 
 
 @dp.message_handler(lambda message: message.text == "Функции")
@@ -271,7 +271,16 @@ async def handler_graph(message: types.Message):
 
 @dp.message_handler(commands=['ask'])
 async def askgpt(message: types.Message):
-    await message.answer(text=askbot(message.text), reply_markup=keyboard)
+    loading_message = await message.reply("Загрузка...")
+    response = askbot(message.text)
+    await asyncio.sleep(2)
+
+    await bot.edit_message_text(
+    text=response,
+    chat_id=loading_message.chat.id,
+    message_id=loading_message.message_id,
+    # reply_markup=keyboard
+)
 
 
 @dp.message_handler(content_types=types.ContentTypes.TEXT)

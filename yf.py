@@ -21,7 +21,7 @@ def graph(ticker):
     max_bars = 250
 
     indicators = [
-        Candlesticks(), SMA(50), SMA(200), Volume(),
+        Candlesticks(), SMA(10),SMA(60), SMA(200), EMA(10), EMA(60), EMA(200), Volume(),
         RSI(),
         MACD(),
     ]
