@@ -1,22 +1,19 @@
+# Use Python 3.11 base image
 FROM python:3.11
 
-# Set environment variables
-ENV NIXPACKS_PATH /opt/venv/bin:$NIXPACKS_PATH
 
-# Copy requirements file
-COPY requirements.txt /app/requirements.txt
-
-# Set working directory
 WORKDIR /app
 
-# Install dependencies
+
+COPY requirements.txt .
+
+# Upgrade pip and install dependencies
 RUN pip install --upgrade pip && \
-    python -m venv /opt/venv && \
-    . /opt/venv/bin/activate && \
     pip install -r requirements.txt
 
-# Copy your application code
-COPY . /app
+# Copy the rest of your application code
+COPY . .
 
-# Set the command to run your app
+# Set the command to run your application
 CMD ["python", "main.py"]
+
